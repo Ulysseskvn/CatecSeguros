@@ -727,6 +727,7 @@ section {
     height: 250px;
     object-fit: cover;
     transition: transform 0.3s ease;
+    display: block;
 }
 
 .gallery-item:hover .gallery-image {
