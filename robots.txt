@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://catecseguros.com.br/sitemap.xml
+
+# Security
+Disallow: /security-config.json
+Disallow: /production-config.json

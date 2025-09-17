@@ -1,0 +1,26 @@
+{
+  "site": {
+    "name": "CatecSeguros",
+    "version": "1.0.0",
+    "environment": "production",
+    "domain": "catecseguros.com.br",
+    "ssl": true,
+    "cdn": false
+  },
+  "optimization": {
+    "minify": true,
+    "compress": true,
+    "cache": true,
+    "lazyLoad": true
+  },
+  "security": {
+    "https": true,
+    "headers": true,
+    "csp": true,
+    "monitoring": true
+  },
+  "analytics": {
+    "google": "GA_MEASUREMENT_ID",
+    "hotjar": "HOTJAR_ID"
+  }
+}
