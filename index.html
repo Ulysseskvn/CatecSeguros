@@ -24,6 +24,22 @@
     <script src="security.js" defer></script>
 </head>
 <body>
+    <!-- Top Header Bar Verde -->
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-content">
+                <div class="top-header-left">
+                    <span class="top-header-item">✓ Segurança</span>
+                </div>
+                <div class="top-header-right">
+                    <span class="top-header-item">📞 (43) 3344-4220</span>
+                    <span class="top-header-item">✉ Fale conosco</span>
+                    <span class="top-header-item">👤 Minha conta</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Security Overlay -->
     <div id="security-overlay" class="security-overlay">
         <div class="security-check">
@@ -34,37 +50,36 @@
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header Principal -->
     <header class="header">
         <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <div class="logo-icon">CCS</div>
-                    <span class="logo-text">CatecSeguros</span>
-                </div>
-                
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#services" class="nav-link">Serviços</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#security" class="nav-link">Segurança</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link">Contato</a>
-                    </li>
-                </ul>
-                
-                <div class="nav-toggle">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+            <div class="container">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <div class="logo-wrapper">
+                            <div class="logo-icon">CCS</div>
+                            <span class="logo-text">CatecSeguros</span>
+                        </div>
+                        <div class="logo-separator">|</div>
+                        <div class="creditas-logo">
+                            <span class="creditas-icon">C</span>
+                            <span class="creditas-text">Creditas</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="#home" class="nav-link">Início</a></li>
+                        <li class="nav-item"><a href="#services" class="nav-link">Serviços</a></li>
+                        <li class="nav-item"><a href="#security" class="nav-link">Segurança</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">Sobre</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contato</a></li>
+                    </ul>
+                    
+                    <div class="nav-toggle">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -74,32 +89,38 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        Proteção Digital <span class="highlight">Inteligente</span>
-                    </h1>
-                    <p class="hero-subtitle">
-                        CatecSeguros oferece seguros cibernéticos e soluções de segurança digital 
-                        para proteger seu negócio contra ameaças online.
-                    </p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary" onclick="openSecureModal()">
-                            Solicitar Cotação
-                        </button>
-                        <button class="btn btn-secondary" onclick="scrollToSection('security')">
-                            Saiba Mais
-                        </button>
+            <div class="container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            Seu <strong>seguro cibernético</strong> na maior <strong>corretora online</strong> do Brasil
+                        </h1>
+                        <p class="hero-subtitle">
+                            Conte com a ajuda da nossa equipe e receba uma <strong>proposta exclusiva</strong> direto na sua tela. 
+                            Você vai escolher entre as <strong>16 maiores seguradoras</strong> do Brasil
+                        </p>
+                        <div class="hero-cta">
+                            <button class="btn-primary" onclick="openSecureModal()">
+                                Simular grátis
+                            </button>
+                        </div>
+                        <div class="hero-phone">
+                            ou ligue grátis <span class="phone-number">(43) 3344-4220</span>
+                        </div>
+                        <div class="hero-award">
+                            <span class="award-icon">🏆</span>
+                            <span class="award-text">
+                                <strong>Ganhamos o Prêmio Reclame Aqui 2014, 2021 e 2024</strong>: melhor empresa de seguro online do País.
+                            </span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="hero-visual">
-                    <div class="security-animation">
-                        <div class="shield-large">🛡️</div>
-                        <div class="security-rings">
-                            <div class="ring ring-1"></div>
-                            <div class="ring ring-2"></div>
-                            <div class="ring ring-3"></div>
+                    
+                    <div class="hero-visual">
+                        <div class="hero-image">
+                            <div class="hero-image-content">
+                                <div class="hero-image-icon">🔒</div>
+                                <div class="hero-image-text">Segurança Digital</div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -2,49 +2,31 @@
 
 ## 🔒 Visão Geral
 
-CatecSeguros é um site fintech especializado em seguros cibernéticos e soluções de segurança digital. O projeto foi desenvolvido com foco máximo em segurança cibernética, implementando as melhores práticas de proteção digital.
+CatecSeguros é um site fintech especializado em seguros cibernéticos e soluções de segurança digital. O projeto foi desenvolvido com foco máximo em segurança cibernética, implementando as melhores práticas de proteção digital. O design foi inspirado na estética profissional da Minuto Seguros, garantindo credibilidade e confiança.
 
-## 🛡️ Recursos de Segurança Implementados
+## 🎨 Design e Estética
 
-### 1. **Segurança de Conexão**
-- Verificação automática de HTTPS
-- Validação de certificados SSL/TLS
-- Indicador visual de conexão segura
-- Proteção contra ataques MITM
+### **Inspiração Visual**
+- Design baseado na estética da Minuto Seguros
+- Header verde no topo com informações de contato
+- Logo duplo (CCS CatecSeguros | C Creditas)
+- Layout duas colunas no hero section
+- Cores verde vibrante (#8BC34A) como principal
+- Design limpo e profissional
 
-### 2. **Proteção de Dados**
-- Criptografia AES-256 para dados sensíveis
-- Sanitização de entrada do usuário
-- Validação rigorosa de formulários
-- Proteção contra XSS e injeção SQL
-
-### 3. **Headers de Segurança**
-```html
-Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Referrer-Policy: strict-origin-when-cross-origin
-```
-
-### 4. **Monitoramento e Detecção**
-- Detecção de tentativas de DevTools
-- Monitoramento de atividades suspeitas
-- Logs de segurança em tempo real
-- Proteção contra tentativas de phishing
-
-### 5. **Autenticação e Sessão**
-- Tokens CSRF para formulários
-- Gerenciamento seguro de sessões
-- Auto-logout por inatividade
-- Proteção contra ataques de força bruta
+### **Características Visuais**
+- Botão verde arredondado para CTAs
+- Cards com bordas verdes no topo
+- Gradientes verdes nos elementos principais
+- Tipografia profissional e legível
+- Layout responsivo completo
 
 ## 📁 Estrutura do Projeto
 
 ```
 CatecSeguros/
-├── index.html              # Página principal
-├── styles.css              # Estilos e design responsivo
+├── index.html              # Página principal com novo design
+├── styles.css              # Estilos inspirados na Minuto Seguros
 ├── app.js                  # Lógica principal da aplicação
 ├── security.js             # Módulo de segurança cibernética
 ├── security-config.json    # Configurações de segurança
@@ -143,7 +125,7 @@ O sistema gera alertas para:
 - Londrina - PR, 86050-460
 
 **Contato Principal:**
-- Telefone: (43) 9111-4220
+- Telefone: (43) 3344-4220
 - E-mail: contato@catecseguros.com.br
 
 **Horário de Funcionamento:**
@@ -154,6 +136,10 @@ O sistema gera alertas para:
 **Redes Sociais:**
 - Instagram: [@catecseguros](https://instagram.com/catecseguros)
 - Facebook: [CatecSeguros](https://www.facebook.com/catecseguros)
+
+**Emergência 24/7:**
+- Telefone: (43) 9111-4220
+- E-mail: emergencia@catecseguros.com.br
 
 ## 🔐 Políticas de Segurança
 
