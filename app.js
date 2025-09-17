@@ -9,7 +9,7 @@ class CatecSegurosApp {
         this.isLoading = false;
         this.formSubmissions = new Map();
         this.currentSlide = 0;
-        this.totalSlides = 4;
+        this.totalSlides = 6; // Atualizado para 6 slides
         this.carouselInterval = null;
         this.init();
     }
@@ -115,7 +115,7 @@ class CatecSegurosApp {
         }, observerOptions);
 
         // Observar elementos
-        const elementsToAnimate = document.querySelectorAll('.security-card, .service-card, .stat');
+        const elementsToAnimate = document.querySelectorAll('.security-card, .service-card, .stat, .gallery-item');
         elementsToAnimate.forEach(el => observer.observe(el));
     }
 
@@ -788,7 +788,8 @@ class CatecSegurosApp {
             () => document.querySelector('#secureModal') !== null,
             () => document.querySelectorAll('.security-card').length >= 6,
             () => document.querySelectorAll('.service-card').length >= 3,
-            () => document.querySelectorAll('.carousel-slide').length >= 4
+            () => document.querySelectorAll('.carousel-slide').length >= 6, // Atualizado para 6 slides
+            () => document.querySelectorAll('.gallery-item').length >= 6 // Novo teste para galeria
         ];
 
         const results = tests.map(test => test());
