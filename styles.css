@@ -166,13 +166,14 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 70px;
+    width: 90px;
     height: 45px;
     border-radius: 12px;
     background-size: 200% 200%;
     animation: gradientShift 4s ease infinite;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    padding: 0 5px;
 }
 
 .logo-icon::before {
