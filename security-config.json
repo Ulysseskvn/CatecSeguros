@@ -1,0 +1,166 @@
+{
+  "security": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-12-19",
+    "encryption": {
+      "algorithm": "AES-256-GCM",
+      "keyLength": 256,
+      "ivLength": 96,
+      "tagLength": 128
+    },
+    "headers": {
+      "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self'; frame-ancestors 'none';",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains; preload",
+      "contentTypeOptions": "nosniff",
+      "frameOptions": "DENY",
+      "xssProtection": "1; mode=block",
+      "referrerPolicy": "strict-origin-when-cross-origin"
+    },
+    "authentication": {
+      "csrfProtection": true,
+      "sessionTimeout": 1800,
+      "maxLoginAttempts": 5,
+      "lockoutDuration": 900,
+      "passwordPolicy": {
+        "minLength": 12,
+        "requireUppercase": true,
+        "requireLowercase": true,
+        "requireNumbers": true,
+        "requireSpecialChars": true,
+        "maxAge": 90
+      }
+    },
+    "monitoring": {
+      "logLevel": "INFO",
+      "retentionDays": 90,
+      "realTimeAlerts": true,
+      "suspiciousActivityThreshold": 5,
+      "monitoredEvents": [
+        "devtools_access",
+        "script_injection",
+        "form_tampering",
+        "suspicious_clicks",
+        "print_attempts",
+        "right_click_blocked"
+      ]
+    },
+    "validation": {
+      "inputSanitization": true,
+      "maxInputLength": 1000,
+      "allowedFileTypes": ["jpg", "png", "pdf"],
+      "maxFileSize": "10MB",
+      "emailValidation": true,
+      "phoneValidation": true,
+      "urlValidation": true
+    },
+    "network": {
+      "httpsRequired": true,
+      "hstsEnabled": true,
+      "certificateValidation": true,
+      "allowedDomains": [
+        "catecseguros.com.br",
+        "localhost"
+      ],
+      "blockedIPs": [],
+      "rateLimiting": {
+        "enabled": true,
+        "requestsPerMinute": 60,
+        "burstLimit": 100
+      }
+    },
+    "dataProtection": {
+      "encryptionAtRest": true,
+      "encryptionInTransit": true,
+      "dataRetention": 2555,
+      "gdprCompliance": true,
+      "lgpdCompliance": true,
+      "dataMinimization": true,
+      "pseudonymization": true
+    },
+    "incidentResponse": {
+      "autoContainment": true,
+      "alertChannels": ["email", "sms", "webhook"],
+      "responseTime": 300,
+      "escalationLevels": 3,
+      "forensicLogging": true
+    },
+    "backup": {
+      "enabled": true,
+      "frequency": "daily",
+      "retention": 30,
+      "encryption": true,
+      "offsiteStorage": true
+    },
+    "compliance": {
+      "standards": ["ISO27001", "SOC2", "GDPR", "LGPD"],
+      "auditLogging": true,
+      "accessControls": "role-based",
+      "dataClassification": true,
+      "privacyByDesign": true
+    }
+  },
+  "features": {
+    "cyberInsurance": {
+      "maxCoverage": 10000000,
+      "currencies": ["BRL", "USD"],
+      "coverageTypes": [
+        "data_breach",
+        "ransomware",
+        "business_interruption",
+        "reputation_damage",
+        "regulatory_fines"
+      ]
+    },
+    "securityServices": [
+      "vulnerability_assessment",
+      "penetration_testing",
+      "security_audit",
+      "incident_response",
+      "security_training",
+      "compliance_assessment"
+    ],
+    "monitoring": {
+      "realTime": true,
+      "threatIntelligence": true,
+      "behavioralAnalysis": true,
+      "machineLearning": true,
+      "alerting": true
+    }
+  },
+  "api": {
+    "version": "v1",
+    "rateLimiting": {
+      "requestsPerMinute": 100,
+      "burstLimit": 200
+    },
+    "authentication": {
+      "required": true,
+      "methods": ["bearer_token", "api_key"],
+      "tokenExpiry": 3600
+    },
+    "endpoints": {
+      "quote": "/api/v1/quote",
+      "contact": "/api/v1/contact",
+      "security_check": "/api/v1/security/check",
+      "incident_report": "/api/v1/incident/report"
+    }
+  },
+  "ui": {
+    "theme": "modern",
+    "colorScheme": "blue",
+    "animations": true,
+    "accessibility": {
+      "wcagCompliance": "AA",
+      "screenReaderSupport": true,
+      "keyboardNavigation": true,
+      "highContrast": true
+    },
+    "responsive": {
+      "breakpoints": {
+        "mobile": 768,
+        "tablet": 1024,
+        "desktop": 1200
+      }
+    }
+  }
+}

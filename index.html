@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex, nofollow">
+    <title>CatecSeguros - Segurança Cibernética e Seguros Digitais</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Security Scripts -->
+    <script src="security.js" defer></script>
+</head>
+<body>
+    <!-- Security Overlay -->
+    <div id="security-overlay" class="security-overlay">
+        <div class="security-check">
+            <div class="shield-icon">🛡️</div>
+            <h3>Verificação de Segurança</h3>
+            <p>Verificando conexão segura...</p>
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <span class="logo-icon">🔒</span>
+                    <span class="logo-text">CatecSeguros</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#security" class="nav-link">Segurança</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contato</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Proteção Digital <span class="highlight">Inteligente</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        CatecSeguros oferece seguros cibernéticos e soluções de segurança digital 
+                        para proteger seu negócio contra ameaças online.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="openSecureModal()">
+                            Solicitar Cotação
+                        </button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('security')">
+                            Saiba Mais
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="security-animation">
+                        <div class="shield-large">🛡️</div>
+                        <div class="security-rings">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Features -->
+        <section id="security" class="security-section">
+            <div class="container">
+                <h2 class="section-title">Nossa Segurança Cibernética</h2>
+                <div class="security-grid">
+                    <div class="security-card">
+                        <div class="security-icon">🔐</div>
+                        <h3>Criptografia End-to-End</h3>
+                        <p>Proteção completa dos seus dados com criptografia AES-256 e protocolos TLS 1.3</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🛡️</div>
+                        <h3>Firewall Avançado</h3>
+                        <p>Sistema de firewall multicamadas com detecção de intrusão em tempo real</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🔍</div>
+                        <h3>Monitoramento 24/7</h3>
+                        <p>Centro de operações de segurança monitorando ameaças 24 horas por dia</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🚨</div>
+                        <h3>Resposta a Incidentes</h3>
+                        <p>Equipe especializada pronta para responder a incidentes de segurança em minutos</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🔑</div>
+                        <h3>Autenticação Multi-Fator</h3>
+                        <p>Sistema robusto de autenticação com múltiplos fatores de verificação</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">📊</div>
+                        <h3>Análise de Risco</h3>
+                        <p>Avaliação contínua de riscos cibernéticos com IA e machine learning</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💼</div>
+                        <h3>Seguro Cibernético Empresarial</h3>
+                        <p>Proteção completa para empresas contra ataques cibernéticos, vazamento de dados e ransomware</p>
+                        <ul class="service-features">
+                            <li>✅ Cobertura de até R$ 10 milhões</li>
+                            <li>✅ Resposta a incidentes incluída</li>
+                            <li>✅ Recuperação de dados</li>
+                            <li>✅ Assistência legal</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🏠</div>
+                        <h3>Proteção Digital Pessoal</h3>
+                        <p>Seguro para indivíduos contra roubo de identidade e fraudes online</p>
+                        <ul class="service-features">
+                            <li>✅ Monitoramento de identidade</li>
+                            <li>✅ Recuperação de identidade</li>
+                            <li>✅ Assistência 24/7</li>
+                            <li>✅ Cobertura mundial</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🔧</div>
+                        <h3>Consultoria em Segurança</h3>
+                        <p>Auditoria e implementação de políticas de segurança cibernética</p>
+                        <ul class="service-features">
+                            <li>✅ Auditoria de segurança</li>
+                            <li>✅ Implementação de políticas</li>
+                            <li>✅ Treinamento de equipe</li>
+                            <li>✅ Suporte técnico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Sobre a CatecSeguros</h2>
+                        <p>
+                            Somos especialistas em segurança cibernética e seguros digitais, 
+                            oferecendo soluções inovadoras para proteger empresas e indivíduos 
+                            contra as crescentes ameaças do mundo digital.
+                        </p>
+                        <p>
+                            Nossa equipe é formada por especialistas certificados em segurança 
+                            da informação, com mais de 10 anos de experiência em proteção 
+                            cibernética e resposta a incidentes.
+                        </p>
+                        
+                        <div class="stats">
+                            <div class="stat">
+                                <div class="stat-number">500+</div>
+                                <div class="stat-label">Empresas Protegidas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">99.9%</div>
+                                <div class="stat-label">Uptime</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Monitoramento</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-visual">
+                        <div class="certification-badges">
+                            <div class="badge">ISO 27001</div>
+                            <div class="badge">SOC 2</div>
+                            <div class="badge">GDPR</div>
+                            <div class="badge">LGPD</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Entre em Contato</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Fale Conosco</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>contato@catecseguros.com.br</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <span>+55 (11) 3000-0000</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>São Paulo, SP - Brasil</span>
+                        </div>
+                        
+                        <div class="emergency-contact">
+                            <h4>Emergência 24/7</h4>
+                            <p>Para incidentes de segurança:</p>
+                            <span class="emergency-phone">+55 (11) 9111-0000</span>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Empresa</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Serviço de Interesse</label>
+                            <select id="service" name="service" required>
+                                <option value="">Selecione um serviço</option>
+                                <option value="cyber-insurance">Seguro Cibernético</option>
+                                <option value="personal-protection">Proteção Digital Pessoal</option>
+                                <option value="consulting">Consultoria em Segurança</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <span class="checkmark"></span>
+                                Aceito a <a href="#" class="privacy-link">Política de Privacidade</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🔒</span>
+                        <span class="logo-text">CatecSeguros</span>
+                    </div>
+                    <p>Proteção digital inteligente para o mundo moderno.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#services">Seguro Cibernético</a></li>
+                        <li><a href="#services">Proteção Digital</a></li>
+                        <li><a href="#services">Consultoria</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Segurança</h4>
+                    <ul>
+                        <li><a href="#security">Nossa Segurança</a></li>
+                        <li><a href="#">Certificações</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li>contato@catecseguros.com.br</li>
+                        <li>+55 (11) 3000-0000</li>
+                        <li>São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2024 CatecSeguros. Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Secure Modal -->
+    <div id="secureModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Solicitar Cotação Segura</h3>
+                <span class="close" onclick="closeSecureModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Esta é uma conexão segura protegida por criptografia SSL/TLS.</p>
+                <form id="quoteForm">
+                    <div class="form-group">
+                        <label for="quoteName">Nome da Empresa</label>
+                        <input type="text" id="quoteName" name="quoteName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quoteEmail">E-mail Corporativo</label>
+                        <input type="email" id="quoteEmail" name="quoteEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="employees">Número de Funcionários</label>
+                        <select id="employees" name="employees" required>
+                            <option value="">Selecione</option>
+                            <option value="1-10">1-10 funcionários</option>
+                            <option value="11-50">11-50 funcionários</option>
+                            <option value="51-200">51-200 funcionários</option>
+                            <option value="200+">Mais de 200 funcionários</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="industry">Setor</label>
+                        <input type="text" id="industry" name="industry" placeholder="Ex: Tecnologia, Saúde, Financeiro">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Solicitar Cotação</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
