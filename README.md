@@ -1,122 +1,66 @@
-# CatecSeguros - Site Fintech com Segurança Cibernética
+# CatecSeguros - Site de Seguradora
 
-## 🔒 Visão Geral
+## 🛡️ Visão Geral
 
-CatecSeguros é um site fintech especializado em seguros cibernéticos e soluções de segurança digital. O projeto foi desenvolvido com foco máximo em segurança cibernética, implementando as melhores práticas de proteção digital. O design foi inspirado na estética profissional da Minuto Seguros, garantindo credibilidade e confiança.
+CatecSeguros é uma seguradora especializada em proteção e segurança, oferecendo soluções completas para pessoas físicas e jurídicas com as melhores condições do mercado segurador. O projeto foi desenvolvido com foco máximo em credibilidade e confiança, implementando as melhores práticas de atendimento ao cliente. O design foi inspirado na estética profissional da Minuto Seguros, garantindo credibilidade e confiança.
 
 ## 🎨 Design e Estética
 
 ### **Inspiração Visual**
 - Design baseado na estética da Minuto Seguros
 - Header verde no topo com informações de contato
-- Logo duplo (CCS CatecSeguros | C Creditas)
+- Logo CCS CatecSeguros com gradiente moderno
 - Layout duas colunas no hero section
-- Cores verde vibrante (#8BC34A) como principal
+- Cores verde-azulado (#2d7a7a) e azul escuro (#1a365d)
 - Design limpo e profissional
 
 ### **Características Visuais**
 - Botão verde arredondado para CTAs
 - Cards com bordas verdes no topo
 - Gradientes verdes nos elementos principais
-- Tipografia profissional e legível
+- Tipografia moderna e legível
 - Layout responsivo completo
+- Efeitos hover sutis e elegantes
 
-## 📁 Estrutura do Projeto
+## 📋 Produtos e Serviços
 
-```
-CatecSeguros/
-├── index.html              # Página principal com novo design
-├── styles.css              # Estilos inspirados na Minuto Seguros
-├── app.js                  # Lógica principal da aplicação
-├── security.js             # Módulo de segurança cibernética
-├── security-config.json    # Configurações de segurança
-├── production-config.json  # Configurações de produção
-├── catec..htaccess         # Configurações Apache
-├── robots.txt              # Diretrizes para crawlers
-├── sitemap.xml             # Mapa do site para SEO
-└── README.md               # Documentação do projeto
-```
+### **Seguros Oferecidos**
+- **Seguro Auto**: Proteção completa para veículos
+- **Seguro Residencial**: Proteção contra incêndio, roubo, alagamento
+- **Seguro de Vida**: Proteção financeira para a família
+- **Seguro Empresarial**: Proteção completa para empresas
+- **Seguro Viagem**: Cobertura nacional e internacional
+- **Seguro Saúde**: Planos com ampla rede credenciada
 
-## 🚀 Como Executar
+### **Serviços Especializados**
+- **Cotação Rápida**: Análise em até 24 horas
+- **Preços Competitivos**: Melhores condições do mercado
+- **Atendimento Especializado**: Corretores experientes
+- **Suporte 24/7**: Atendimento contínuo
 
-### 1. **Servidor Local (Desenvolvimento)**
-```bash
-# Python 3
-python -m http.server 8000
+## 🏢 Sobre a Empresa
 
-# Node.js
-npx http-server -p 8000
+### **Histórico**
+- Mais de 10 anos de experiência no mercado de seguros
+- Equipe formada por corretores especializados
+- Foco em proteção patrimonial e segurança
 
-# PHP
-php -S localhost:8000
-```
-
-### 2. **Servidor HTTPS (Produção)**
-```bash
-# Com certificado SSL
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
-python -m http.server 8000 --bind 0.0.0.0
-```
-
-## 🔧 Configurações de Segurança
-
-### **Content Security Policy (CSP)**
-O CSP está configurado para permitir apenas recursos do mesmo domínio, bloqueando scripts externos maliciosos.
-
-### **Validação de Entrada**
-Todos os inputs são validados e sanitizados:
-- Remoção de tags HTML
-- Filtragem de caracteres perigosos
-- Validação de formato (email, telefone)
-- Limitação de tamanho
-
-### **Criptografia de Dados**
-```javascript
-// Exemplo de uso da criptografia
-const encryptedData = securityManager.encryptData(sensitiveData);
-const decryptedData = securityManager.decryptData(encryptedData);
-```
-
-## 📊 Monitoramento de Segurança
-
-### **Eventos Monitorados**
-- Tentativas de acesso ao DevTools
-- Cliques em links JavaScript
-- Injeções de scripts inline
-- Mudanças suspeitas no DOM
-- Tentativas de impressão
-
-### **Alertas Automáticos**
-O sistema gera alertas para:
-- Atividades suspeitas detectadas
-- Tentativas de phishing
-- Violações de CSP
-- Falhas de validação
-
-## 🌐 Recursos do Site
-
-### **Seções Principais**
-1. **Hero Section** - Apresentação da empresa com logo CCS
-2. **Segurança** - Recursos de proteção cibernética
-3. **Serviços** - Seguros e consultoria
-4. **Sobre** - Informações da empresa
-5. **Contato** - Formulários seguros e informações de contato
-
-### **Serviços Oferecidos**
-- **Seguro Cibernético Empresarial** (até R$ 10 milhões)
-- **Proteção Digital Pessoal**
-- **Consultoria em Segurança**
+### **Estatísticas**
+- **5.000+** Clientes Protegidos
+- **R$ 100M+** Em Coberturas
+- **24h** Tempo de Cotação
 
 ### **Certificações**
-- ISO 27001
-- SOC 2
-- GDPR Compliance
-- LGPD Compliance
+- **SUSEP**: Superintendência de Seguros Privados
+- **ANS**: Agência Nacional de Saúde Suplementar
+- **LGPD**: Lei Geral de Proteção de Dados
+- **ISO 9001**: Gestão da Qualidade
 
-### **Localização**
-- **Sede:** Londrina, Paraná
-- **Endereço:** Av. Ayrton Senna da Silva, 500 - Sala 901 - Palhano 2
-- **CEP:** 86050-460
+## 📞 Contato de Emergência
+
+**Atendimento 24/7 para dúvidas sobre seguros:**
+- Telefone: +55 (43) 9111-4220
+- E-mail: contato@catecseguros.com.br
 
 ## 📍 Informações de Contato
 
@@ -137,70 +81,149 @@ O sistema gera alertas para:
 - Instagram: [@catecseguros](https://instagram.com/catecseguros)
 - Facebook: [CatecSeguros](https://www.facebook.com/catecseguros)
 
-**Emergência 24/7:**
-- Telefone: (43) 9111-4220
-- E-mail: emergencia@catecseguros.com.br
-
 ## 🔐 Políticas de Segurança
 
-### **Política de Senhas**
-- Mínimo 12 caracteres
-- Combinação de maiúsculas, minúsculas, números e símbolos
-- Não reutilização de senhas
-- Rotação obrigatória a cada 90 dias
+### **Proteção de Dados**
+- Criptografia SSL/TLS em todas as comunicações
+- Conformidade com LGPD
+- Política de privacidade transparente
+- Segurança de dados do cliente
 
-### **Política de Acesso**
-- Autenticação multi-fator obrigatória
-- Acesso baseado em função
-- Logs de acesso detalhados
-- Revogação imediata em caso de suspeita
+### **Certificações de Segurança**
+- Certificação SUSEP
+- Conformidade com regulamentações do setor
+- Auditorias regulares de segurança
+- Backup e recuperação de dados
 
-## 🚨 Resposta a Incidentes
+## 📁 Estrutura do Projeto
 
-### **Procedimento de Emergência**
-1. **Detecção** - Sistema automático de monitoramento
-2. **Contenção** - Isolamento imediato da ameaça
-3. **Investigação** - Análise forense do incidente
-4. **Recuperação** - Restauração dos serviços
-5. **Lições Aprendidas** - Melhoria contínua
+```
+CatecSeguros/
+├── index.html              # Página principal
+├── styles.css              # Estilos e design responsivo
+├── app.js                  # Lógica principal da aplicação
+├── security.js             # Módulo de segurança
+├── security-config.json    # Configurações de segurança
+├── production-config.json  # Configurações de produção
+├── catec..htaccess         # Configurações Apache
+├── robots.txt              # Diretrizes para crawlers
+├── sitemap.xml             # Mapa do site para SEO
+└── README.md               # Documentação do projeto
+```
 
-## 📈 Métricas de Segurança
+## 🚀 Tecnologias Utilizadas
 
-- **Uptime**: 99.9%
-- **Tempo de Resposta**: < 5 minutos
-- **Empresas Protegidas**: 500+
-- **Monitoramento**: 24/7
+### **Frontend**
+- **HTML5**: Estrutura semântica moderna
+- **CSS3**: Estilos avançados com Flexbox e Grid
+- **JavaScript**: Interatividade e funcionalidades
+- **Design Responsivo**: Compatível com todos os dispositivos
 
-## 🔄 Atualizações de Segurança
+### **Segurança**
+- **HTTPS**: Conexão segura obrigatória
+- **CSP**: Content Security Policy implementada
+- **Headers de Segurança**: Proteção contra ataques
+- **Validação de Dados**: Sanitização de entradas
 
-O sistema é atualizado regularmente com:
-- Patches de segurança
-- Novas funcionalidades de proteção
-- Melhorias na detecção de ameaças
-- Otimizações de performance
+## 📱 Responsividade
 
-## 📋 Compliance
+### **Breakpoints**
+- **Desktop**: 1200px+
+- **Tablet**: 768px - 1199px
+- **Mobile**: 320px - 767px
 
-### **Regulamentações Atendidas**
-- **LGPD** (Lei Geral de Proteção de Dados)
-- **GDPR** (General Data Protection Regulation)
-- **ISO 27001** (Gestão de Segurança da Informação)
-- **SOC 2** (Controles de Segurança)
+### **Características**
+- Layout adaptativo
+- Menu hambúrguer em mobile
+- Imagens responsivas
+- Tipografia escalável
 
-## 🤝 Contribuição
+## 🎯 Funcionalidades
 
-Para contribuir com melhorias de segurança:
-1. Reporte vulnerabilidades via e-mail seguro
-2. Use criptografia PGP para comunicações sensíveis
-3. Siga as diretrizes de segurança do projeto
-4. Teste todas as alterações em ambiente isolado
+### **Principais Recursos**
+- **Simulador de Seguros**: Cotação online rápida
+- **Formulário de Contato**: Comunicação direta
+- **Modal de Cotação**: Interface intuitiva
+- **Navegação Suave**: Scroll entre seções
+- **Indicadores de Segurança**: Confiança visual
+
+### **Interatividade**
+- Animações CSS suaves
+- Efeitos hover nos elementos
+- Loading states
+- Validação de formulários
+- Feedback visual
+
+## 📊 SEO e Performance
+
+### **Otimizações**
+- Meta tags otimizadas
+- Sitemap XML
+- Robots.txt configurado
+- Estrutura semântica
+- Imagens otimizadas
+
+### **Performance**
+- CSS minificado
+- JavaScript otimizado
+- Carregamento assíncrono
+- Cache headers
+- Compressão gzip
+
+## 🔧 Configuração e Deploy
+
+### **Requisitos**
+- Servidor web (Apache/Nginx)
+- Suporte a HTTPS
+- PHP 7.4+ (opcional)
+
+### **Deploy**
+1. Upload dos arquivos para o servidor
+2. Configurar HTTPS
+3. Ajustar configurações de segurança
+4. Testar funcionalidades
+5. Monitorar performance
+
+## 📈 Monitoramento
+
+### **Métricas Importantes**
+- Tempo de carregamento
+- Taxa de conversão
+- Bounce rate
+- Engajamento do usuário
+- Segurança do site
+
+### **Ferramentas**
+- Google Analytics
+- Google Search Console
+- Monitoramento de uptime
+- Logs de segurança
+- Relatórios de performance
+
+## 🤝 Suporte e Manutenção
+
+### **Suporte Técnico**
+- Documentação completa
+- Código comentado
+- Estrutura modular
+- Fácil manutenção
+
+### **Atualizações**
+- Versões controladas
+- Backup automático
+- Testes de regressão
+- Deploy seguro
 
 ## 📄 Licença
 
-Este projeto está protegido por direitos autorais. Todos os direitos reservados à CatecSeguros.
+Este projeto é propriedade da CatecSeguros e está protegido por direitos autorais.
+
+## 📞 Contato para Desenvolvimento
+
+Para questões técnicas ou suporte de desenvolvimento:
+- E-mail: contato@catecseguros.com.br
+- Telefone: (43) 3344-4220
 
 ---
 
-**⚠️ AVISO IMPORTANTE**: Este é um sistema de produção com foco em segurança. Qualquer tentativa de acesso não autorizado será monitorada e reportada às autoridades competentes.
-
-**🔒 Última atualização de segurança**: Dezembro 2024
+**CatecSeguros** - Sua proteção é nossa prioridade! 🛡️

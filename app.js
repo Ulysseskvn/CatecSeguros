@@ -1,6 +1,6 @@
 /**
  * CatecSeguros - Main Application
- * Aplicação principal do site fintech
+ * Aplicação principal do site da seguradora
  */
 
 class CatecSegurosApp {
@@ -29,71 +29,21 @@ class CatecSegurosApp {
      * Configura navegação
      */
     setupNavigation() {
-        // Smooth scrolling para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+        
+        navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('href').substring(1);
                 this.scrollToSection(targetId);
+                this.updateActiveNavLink(link);
             });
         });
 
-        // Atualiza seção ativa no scroll
+        // Scroll spy
         window.addEventListener('scroll', () => {
-            this.updateActiveSection();
-        });
-    }
-
-    /**
-     * Rola para seção específica
-     */
-    scrollToSection(sectionId) {
-        const target = document.getElementById(sectionId);
-        if (target) {
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = target.offsetTop - headerHeight - 20;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-            
-            this.currentSection = sectionId;
-            this.updateNavigation();
-        }
-    }
-
-    /**
-     * Atualiza seção ativa baseada no scroll
-     */
-    updateActiveSection() {
-        const sections = ['home', 'services', 'security', 'about', 'contact'];
-        const scrollPosition = window.scrollY + 100;
-
-        for (const sectionId of sections) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                const sectionTop = section.offsetTop;
-                const sectionBottom = sectionTop + section.offsetHeight;
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                    this.currentSection = sectionId;
-                    this.updateNavigation();
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
-     * Atualiza navegação ativa
-     */
-    updateNavigation() {
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${this.currentSection}`) {
-                link.classList.add('active');
-            }
+            this.updateActiveSection(sections);
         });
     }
 
@@ -101,260 +51,21 @@ class CatecSegurosApp {
      * Configura formulários
      */
     setupForms() {
-        // Formulário de contato
         const contactForm = document.getElementById('contactForm');
+        const quoteForm = document.getElementById('quoteForm');
+
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                this.handleContactForm(e.target);
+                this.handleContactForm(contactForm);
             });
         }
 
-        // Formulário de cotação
-        const quoteForm = document.getElementById('quoteForm');
         if (quoteForm) {
             quoteForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                this.handleQuoteForm(e.target);
+                this.handleQuoteForm(quoteForm);
             });
-        }
-
-        // Validação em tempo real
-        this.setupFormValidation();
-    }
-
-    /**
-     * Configura validação de formulários
-     */
-    setupFormValidation() {
-        document.querySelectorAll('input, textarea, select').forEach(input => {
-            input.addEventListener('blur', () => {
-                this.validateField(input);
-            });
-
-            input.addEventListener('input', () => {
-                this.clearFieldError(input);
-            });
-        });
-    }
-
-    /**
-     * Valida campo individual
-     */
-    validateField(field) {
-        const value = field.value.trim();
-        const type = field.type;
-        const name = field.name;
-        let isValid = true;
-        let errorMessage = '';
-
-        // Validação obrigatória
-        if (field.hasAttribute('required') && !value) {
-            isValid = false;
-            errorMessage = 'Este campo é obrigatório';
-        }
-
-        // Validação de e-mail
-        if (type === 'email' && value && !this.isValidEmail(value)) {
-            isValid = false;
-            errorMessage = 'Formato de e-mail inválido';
-        }
-
-        // Validação de telefone
-        if (name === 'phone' && value && !this.isValidPhone(value)) {
-            isValid = false;
-            errorMessage = 'Formato de telefone inválido';
-        }
-
-        // Validação de mensagem
-        if (name === 'message' && value && value.length < 10) {
-            isValid = false;
-            errorMessage = 'Mensagem deve ter pelo menos 10 caracteres';
-        }
-
-        if (!isValid) {
-            this.showFieldError(field, errorMessage);
-        } else {
-            this.clearFieldError(field);
-        }
-
-        return isValid;
-    }
-
-    /**
-     * Valida e-mail
-     */
-    isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
-    /**
-     * Valida telefone
-     */
-    isValidPhone(phone) {
-        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-        return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
-    }
-
-    /**
-     * Mostra erro de campo
-     */
-    showFieldError(field, message) {
-        this.clearFieldError(field);
-        
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'field-error';
-        errorDiv.textContent = message;
-        errorDiv.style.color = '#ef4444';
-        errorDiv.style.fontSize = '0.8rem';
-        errorDiv.style.marginTop = '0.25rem';
-        
-        field.style.borderColor = '#ef4444';
-        field.parentNode.appendChild(errorDiv);
-    }
-
-    /**
-     * Remove erro de campo
-     */
-    clearFieldError(field) {
-        const existingError = field.parentNode.querySelector('.field-error');
-        if (existingError) {
-            existingError.remove();
-        }
-        field.style.borderColor = '#e5e7eb';
-    }
-
-    /**
-     * Processa formulário de contato
-     */
-    async handleContactForm(form) {
-        if (this.isLoading) return;
-
-        // Valida todos os campos
-        const fields = form.querySelectorAll('input, textarea, select');
-        let isFormValid = true;
-
-        fields.forEach(field => {
-            if (!this.validateField(field)) {
-                isFormValid = false;
-            }
-        });
-
-        if (!isFormValid) {
-            this.showNotification('Por favor, corrija os erros no formulário', 'error');
-            return;
-        }
-
-        this.isLoading = true;
-        this.setFormLoading(form, true);
-
-        try {
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            // Criptografa dados sensíveis
-            if (window.securityManager) {
-                const encryptedData = window.securityManager.encryptData(data);
-                console.log('Dados criptografados:', encryptedData);
-            }
-
-            // Simula envio para servidor
-            await this.simulateFormSubmission(data);
-
-            this.showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-            form.reset();
-            
-        } catch (error) {
-            console.error('Erro no envio:', error);
-            this.showNotification('Erro ao enviar mensagem. Tente novamente.', 'error');
-        } finally {
-            this.isLoading = false;
-            this.setFormLoading(form, false);
-        }
-    }
-
-    /**
-     * Processa formulário de cotação
-     */
-    async handleQuoteForm(form) {
-        if (this.isLoading) return;
-
-        // Valida todos os campos
-        const fields = form.querySelectorAll('input, select');
-        let isFormValid = true;
-
-        fields.forEach(field => {
-            if (!this.validateField(field)) {
-                isFormValid = false;
-            }
-        });
-
-        if (!isFormValid) {
-            this.showNotification('Por favor, corrija os erros no formulário', 'error');
-            return;
-        }
-
-        this.isLoading = true;
-        this.setFormLoading(form, true);
-
-        try {
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            // Criptografa dados sensíveis
-            if (window.securityManager) {
-                const encryptedData = window.securityManager.encryptData(data);
-                console.log('Dados de cotação criptografados:', encryptedData);
-            }
-
-            // Simula envio para servidor
-            await this.simulateFormSubmission(data);
-
-            this.showNotification('Cotação solicitada com sucesso! Enviaremos uma proposta em até 24h.', 'success');
-            this.closeSecureModal();
-            form.reset();
-            
-        } catch (error) {
-            console.error('Erro no envio:', error);
-            this.showNotification('Erro ao solicitar cotação. Tente novamente.', 'error');
-        } finally {
-            this.isLoading = false;
-            this.setFormLoading(form, false);
-        }
-    }
-
-    /**
-     * Simula envio de formulário
-     */
-    async simulateFormSubmission(data) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Simula sucesso 90% das vezes
-                if (Math.random() > 0.1) {
-                    resolve(data);
-                } else {
-                    reject(new Error('Erro simulado do servidor'));
-                }
-            }, 2000);
-        });
-    }
-
-    /**
-     * Define estado de carregamento do formulário
-     */
-    setFormLoading(form, isLoading) {
-        const submitButton = form.querySelector('button[type="submit"]');
-        if (submitButton) {
-            if (isLoading) {
-                submitButton.disabled = true;
-                submitButton.textContent = 'Enviando...';
-                submitButton.classList.add('loading');
-            } else {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Enviar Mensagem';
-                submitButton.classList.remove('loading');
-            }
         }
     }
 
@@ -362,50 +73,22 @@ class CatecSegurosApp {
      * Configura modais
      */
     setupModals() {
-        // Modal de cotação segura
         const modal = document.getElementById('secureModal');
+        const closeBtn = document.querySelector('.close');
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                this.closeSecureModal();
+            });
+        }
+
+        // Fechar modal clicando fora
         if (modal) {
-            // Fecha modal ao clicar fora
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     this.closeSecureModal();
                 }
             });
-
-            // Fecha modal com ESC
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.style.display === 'block') {
-                    this.closeSecureModal();
-                }
-            });
-        }
-    }
-
-    /**
-     * Abre modal seguro
-     */
-    openSecureModal() {
-        const modal = document.getElementById('secureModal');
-        if (modal) {
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            
-            // Foca no primeiro campo
-            const firstInput = modal.querySelector('input');
-            if (firstInput) {
-                setTimeout(() => firstInput.focus(), 100);
-            }
-        }
-    }
-
-    /**
-     * Fecha modal seguro
-     */
-    closeSecureModal() {
-        const modal = document.getElementById('secureModal');
-        if (modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
         }
     }
 
@@ -413,7 +96,7 @@ class CatecSegurosApp {
      * Configura animações
      */
     setupAnimations() {
-        // Animação de entrada para elementos
+        // Animações de entrada
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -427,10 +110,9 @@ class CatecSegurosApp {
             });
         }, observerOptions);
 
-        // Observa elementos para animação
-        document.querySelectorAll('.security-card, .service-card, .about-text, .contact-info').forEach(el => {
-            observer.observe(el);
-        });
+        // Observar elementos
+        const elementsToAnimate = document.querySelectorAll('.security-card, .service-card, .stat');
+        elementsToAnimate.forEach(el => observer.observe(el));
     }
 
     /**
@@ -464,15 +146,16 @@ class CatecSegurosApp {
 
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
                 navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
             });
 
-            // Fecha menu ao clicar em link
-            document.querySelectorAll('.nav-link').forEach(link => {
+            // Fechar menu ao clicar em link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    navMenu.classList.remove('active');
                     navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
                 });
             });
         }
@@ -482,25 +165,30 @@ class CatecSegurosApp {
      * Configura recursos de segurança
      */
     setupSecurityFeatures() {
-        // Bloqueia clique direito em imagens
+        // Detectar tentativas de dev tools
+        let devtools = {open: false, orientation: null};
+        const threshold = 160;
+
+        setInterval(() => {
+            if (window.outerHeight - window.innerHeight > threshold || 
+                window.outerWidth - window.innerWidth > threshold) {
+                if (!devtools.open) {
+                    devtools.open = true;
+                    this.logSecurityEvent('DevTools opened');
+                }
+            } else {
+                devtools.open = false;
+            }
+        }, 500);
+
+        // Detectar clique direito
         document.addEventListener('contextmenu', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-                this.showNotification('Proteção de imagem ativa', 'info');
-            }
+            this.logSecurityEvent('Right click detected');
         });
 
-        // Detecta tentativas de seleção de texto sensível
+        // Detectar seleção de texto
         document.addEventListener('selectstart', (e) => {
-            if (e.target.classList.contains('sensitive')) {
-                e.preventDefault();
-                this.showNotification('Conteúdo protegido', 'info');
-            }
-        });
-
-        // Monitora tentativas de print
-        window.addEventListener('beforeprint', () => {
-            this.logSecurityEvent('Print attempt detected');
+            this.logSecurityEvent('Text selection detected');
         });
     }
 
@@ -509,81 +197,210 @@ class CatecSegurosApp {
      */
     setupPerformanceOptimizations() {
         // Lazy loading para imagens
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
-                    }
-                });
+        const images = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
             });
+        });
 
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
+        images.forEach(img => imageObserver.observe(img));
 
-        // Debounce para eventos de scroll
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                this.updateActiveSection();
-            }, 100);
+        // Preload de recursos críticos
+        this.preloadCriticalResources();
+    }
+
+    /**
+     * Precarrega recursos críticos
+     */
+    preloadCriticalResources() {
+        const criticalResources = [
+            'styles.css',
+            'security.js'
+        ];
+
+        criticalResources.forEach(resource => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = resource;
+            link.as = resource.endsWith('.css') ? 'style' : 'script';
+            document.head.appendChild(link);
         });
     }
 
     /**
-     * Mostra notificação
+     * Scroll suave para seção
      */
-    showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.textContent = message;
-        
-        // Estilos da notificação
-        Object.assign(notification.style, {
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            padding: '1rem 1.5rem',
-            borderRadius: '8px',
-            color: 'white',
-            fontWeight: '600',
-            zIndex: '10000',
-            transform: 'translateX(100%)',
-            transition: 'transform 0.3s ease'
+    scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            const headerHeight = document.querySelector('.header').offsetHeight;
+            const topPosition = section.offsetTop - headerHeight - 20;
+            
+            window.scrollTo({
+                top: topPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    /**
+     * Atualiza link ativo da navegação
+     */
+    updateActiveNavLink(activeLink) {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => link.classList.remove('active'));
+        activeLink.classList.add('active');
+    }
+
+    /**
+     * Atualiza seção ativa baseada no scroll
+     */
+    updateActiveSection(sections) {
+        const scrollPosition = window.scrollY + 100;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                this.currentSection = sectionId;
+                this.updateActiveNavLink(document.querySelector(`[href="#${sectionId}"]`));
+            }
         });
+    }
 
-        // Cores por tipo
-        const colors = {
-            success: '#10b981',
-            error: '#ef4444',
-            warning: '#f59e0b',
-            info: '#3b82f6'
-        };
+    /**
+     * Processa formulário de contato
+     */
+    handleContactForm(form) {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
         
-        notification.style.backgroundColor = colors[type] || colors.info;
+        // Validação básica
+        if (!this.validateForm(data)) {
+            this.showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
+            return;
+        }
 
-        document.body.appendChild(notification);
-
-        // Anima entrada
+        // Simular envio
+        this.showLoading(true);
+        
         setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
+            this.showLoading(false);
+            this.showMessage('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+            form.reset();
+            this.logSecurityEvent('Contact form submitted');
+        }, 2000);
+    }
 
-        // Remove após 5 segundos
+    /**
+     * Processa formulário de cotação
+     */
+    handleQuoteForm(form) {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        // Validação básica
+        if (!this.validateForm(data)) {
+            this.showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
+            return;
+        }
+
+        // Simular envio
+        this.showLoading(true);
+        
         setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
+            this.showLoading(false);
+            this.showMessage('Cotação solicitada com sucesso! Enviaremos sua proposta em até 24 horas.', 'success');
+            form.reset();
+            this.closeSecureModal();
+            this.logSecurityEvent('Quote form submitted');
+        }, 2000);
+    }
+
+    /**
+     * Valida formulário
+     */
+    validateForm(data) {
+        const requiredFields = ['name', 'email'];
+        
+        for (const field of requiredFields) {
+            if (!data[field] || data[field].trim() === '') {
+                return false;
+            }
+        }
+
+        // Validação de email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Mostra mensagem de feedback
+     */
+    showMessage(message, type = 'info') {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `${type}-message`;
+        messageDiv.textContent = message;
+        messageDiv.style.display = 'block';
+
+        const form = document.querySelector('.contact-form') || document.querySelector('#quoteForm');
+        if (form) {
+            form.insertBefore(messageDiv, form.firstChild);
+            
             setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 300);
-        }, 5000);
+                messageDiv.remove();
+            }, 5000);
+        }
+    }
+
+    /**
+     * Mostra/esconde loading
+     */
+    showLoading(show) {
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            if (show) {
+                form.classList.add('loading');
+            } else {
+                form.classList.remove('loading');
+            }
+        });
+    }
+
+    /**
+     * Abre modal seguro
+     */
+    openSecureModal() {
+        const modal = document.getElementById('secureModal');
+        if (modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            this.logSecurityEvent('Secure modal opened');
+        }
+    }
+
+    /**
+     * Fecha modal seguro
+     */
+    closeSecureModal() {
+        const modal = document.getElementById('secureModal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            this.logSecurityEvent('Secure modal closed');
+        }
     }
 
     /**
@@ -598,39 +415,351 @@ class CatecSegurosApp {
     }
 
     /**
-     * Utilitário para scroll suave
+     * Inicializa overlay de segurança
      */
-    smoothScrollTo(element, offset = 0) {
-        const targetPosition = element.offsetTop - offset;
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
+    initSecurityOverlay() {
+        const overlay = document.getElementById('security-overlay');
+        if (overlay) {
+            // Simular verificação de segurança
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 500);
+            }, 2000);
+        }
+    }
+
+    /**
+     * Configura indicadores de segurança
+     */
+    setupSecurityIndicators() {
+        const indicator = document.createElement('div');
+        indicator.className = 'security-indicator';
+        indicator.innerHTML = '🛡️ Conexão Segura';
+        document.body.appendChild(indicator);
+
+        // Atualizar status da conexão
+        this.updateSecurityStatus();
+    }
+
+    /**
+     * Atualiza status de segurança
+     */
+    updateSecurityStatus() {
+        const isSecure = location.protocol === 'https:';
+        const indicator = document.querySelector('.security-indicator');
+        
+        if (indicator) {
+            if (isSecure) {
+                indicator.innerHTML = '🛡️ Conexão Segura';
+                indicator.style.background = 'linear-gradient(135deg, #2d7a7a 0%, #1a365d 100%)';
+            } else {
+                indicator.innerHTML = '⚠️ Conexão Não Segura';
+                indicator.style.background = 'linear-gradient(135deg, #e53e3e 0%, #fc8181 100%)';
+            }
+        }
+    }
+
+    /**
+     * Configura analytics
+     */
+    setupAnalytics() {
+        // Eventos de clique em botões
+        const buttons = document.querySelectorAll('.btn-primary');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                this.trackEvent('button_click', {
+                    button_text: button.textContent.trim(),
+                    button_location: button.closest('section')?.id || 'unknown'
+                });
+            });
+        });
+
+        // Eventos de scroll
+        let scrollEvents = 0;
+        window.addEventListener('scroll', () => {
+            scrollEvents++;
+            if (scrollEvents % 10 === 0) {
+                this.trackEvent('scroll', {
+                    scroll_position: window.scrollY,
+                    scroll_percentage: Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100)
+                });
+            }
         });
     }
 
     /**
-     * Utilitário para formatar moeda
+     * Rastreia eventos
      */
-    formatCurrency(value) {
-        return new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        }).format(value);
+    trackEvent(eventName, eventData) {
+        console.log('📊 Event tracked:', eventName, eventData);
+        
+        // Aqui você pode integrar com Google Analytics ou outras ferramentas
+        if (typeof gtag !== 'undefined') {
+            gtag('event', eventName, eventData);
+        }
     }
 
     /**
-     * Utilitário para formatar data
+     * Configura notificações push
      */
-    formatDate(date) {
-        return new Intl.DateTimeFormat('pt-BR', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        }).format(date);
+    setupPushNotifications() {
+        if ('Notification' in window && 'serviceWorker' in navigator) {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    console.log('🔔 Push notifications enabled');
+                }
+            });
+        }
+    }
+
+    /**
+     * Configura cache offline
+     */
+    setupOfflineCache() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('📱 Service Worker registered:', registration);
+                })
+                .catch(error => {
+                    console.log('❌ Service Worker registration failed:', error);
+                });
+        }
+    }
+
+    /**
+     * Configura modo escuro
+     */
+    setupDarkMode() {
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.className = 'dark-mode-toggle';
+        darkModeToggle.innerHTML = '🌙';
+        darkModeToggle.title = 'Alternar modo escuro';
+        
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDark ? '☀️' : '🌙';
+            localStorage.setItem('darkMode', isDark);
+        });
+
+        // Restaurar preferência
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '☀️';
+        }
+
+        document.body.appendChild(darkModeToggle);
+    }
+
+    /**
+     * Configura acessibilidade
+     */
+    setupAccessibility() {
+        // Navegação por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Alto contraste
+        const highContrastToggle = document.createElement('button');
+        highContrastToggle.className = 'high-contrast-toggle';
+        highContrastToggle.innerHTML = '🔍';
+        highContrastToggle.title = 'Alto contraste';
+        
+        highContrastToggle.addEventListener('click', () => {
+            document.body.classList.toggle('high-contrast');
+            const isHighContrast = document.body.classList.contains('high-contrast');
+            localStorage.setItem('highContrast', isHighContrast);
+        });
+
+        // Restaurar preferência
+        const savedHighContrast = localStorage.getItem('highContrast');
+        if (savedHighContrast === 'true') {
+            document.body.classList.add('high-contrast');
+        }
+
+        document.body.appendChild(highContrastToggle);
+    }
+
+    /**
+     * Configura internacionalização
+     */
+    setupInternationalization() {
+        const languageSelector = document.createElement('select');
+        languageSelector.className = 'language-selector';
+        
+        const languages = [
+            { code: 'pt-BR', name: 'Português' },
+            { code: 'en-US', name: 'English' },
+            { code: 'es-ES', name: 'Español' }
+        ];
+
+        languages.forEach(lang => {
+            const option = document.createElement('option');
+            option.value = lang.code;
+            option.textContent = lang.name;
+            languageSelector.appendChild(option);
+        });
+
+        languageSelector.addEventListener('change', (e) => {
+            const selectedLang = e.target.value;
+            localStorage.setItem('preferredLanguage', selectedLang);
+            this.loadLanguage(selectedLang);
+        });
+
+        // Restaurar preferência
+        const savedLanguage = localStorage.getItem('preferredLanguage') || 'pt-BR';
+        languageSelector.value = savedLanguage;
+        this.loadLanguage(savedLanguage);
+
+        document.body.appendChild(languageSelector);
+    }
+
+    /**
+     * Carrega idioma
+     */
+    loadLanguage(langCode) {
+        // Aqui você implementaria a lógica de carregamento de idiomas
+        console.log('🌍 Language loaded:', langCode);
+    }
+
+    /**
+     * Configura PWA
+     */
+    setupPWA() {
+        // Manifest
+        const manifest = {
+            name: 'CatecSeguros',
+            short_name: 'CatecSeguros',
+            description: 'Seguradora de Confiança',
+            start_url: '/',
+            display: 'standalone',
+            background_color: '#1a365d',
+            theme_color: '#2d7a7a',
+            icons: [
+                {
+                    src: 'icon-192.png',
+                    sizes: '192x192',
+                    type: 'image/png'
+                },
+                {
+                    src: 'icon-512.png',
+                    sizes: '512x512',
+                    type: 'image/png'
+                }
+            ]
+        };
+
+        const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+        const manifestURL = URL.createObjectURL(manifestBlob);
+        
+        const manifestLink = document.createElement('link');
+        manifestLink.rel = 'manifest';
+        manifestLink.href = manifestURL;
+        document.head.appendChild(manifestLink);
+    }
+
+    /**
+     * Configura testes automatizados
+     */
+    setupAutomatedTests() {
+        // Testes básicos de funcionalidade
+        this.runBasicTests();
+    }
+
+    /**
+     * Executa testes básicos
+     */
+    runBasicTests() {
+        const tests = [
+            () => document.querySelector('.nav-logo') !== null,
+            () => document.querySelector('#contactForm') !== null,
+            () => document.querySelector('#secureModal') !== null,
+            () => document.querySelectorAll('.security-card').length >= 6,
+            () => document.querySelectorAll('.service-card').length >= 3
+        ];
+
+        const results = tests.map(test => test());
+        const passedTests = results.filter(result => result).length;
+        
+        console.log(`🧪 Tests: ${passedTests}/${tests.length} passed`);
+        
+        if (passedTests === tests.length) {
+            console.log('✅ All tests passed!');
+        } else {
+            console.log('❌ Some tests failed');
+        }
+    }
+
+    /**
+     * Configura monitoramento de performance
+     */
+    setupPerformanceMonitoring() {
+        // Core Web Vitals
+        if ('PerformanceObserver' in window) {
+            const observer = new PerformanceObserver((list) => {
+                list.getEntries().forEach((entry) => {
+                    console.log('📊 Performance metric:', entry.name, entry.value);
+                });
+            });
+
+            observer.observe({ entryTypes: ['measure', 'navigation'] });
+        }
+
+        // Tempo de carregamento
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`⚡ Page loaded in ${loadTime.toFixed(2)}ms`);
+        });
+    }
+
+    /**
+     * Configura backup automático
+     */
+    setupAutoBackup() {
+        // Backup de dados do formulário
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            const inputs = form.querySelectorAll('input, textarea, select');
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData);
+                    localStorage.setItem(`form_backup_${form.id}`, JSON.stringify(data));
+                });
+            });
+
+            // Restaurar dados salvos
+            const savedData = localStorage.getItem(`form_backup_${form.id}`);
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    Object.keys(data).forEach(key => {
+                        const input = form.querySelector(`[name="${key}"]`);
+                        if (input && data[key]) {
+                            input.value = data[key];
+                        }
+                    });
+                } catch (e) {
+                    console.log('❌ Error restoring form data:', e);
+                }
+            }
+        });
     }
 }
 
-// Funções globais para compatibilidade
+// Funções globais
 function openSecureModal() {
     if (window.catecApp) {
         window.catecApp.openSecureModal();
@@ -649,15 +778,34 @@ function scrollToSection(sectionId) {
     }
 }
 
-// Inicializa a aplicação quando o DOM estiver carregado
+// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     window.catecApp = new CatecSegurosApp();
+    window.catecApp.initSecurityOverlay();
+    window.catecApp.setupSecurityIndicators();
+    window.catecApp.setupAnalytics();
+    window.catecApp.setupPushNotifications();
+    window.catecApp.setupOfflineCache();
+    window.catecApp.setupDarkMode();
+    window.catecApp.setupAccessibility();
+    window.catecApp.setupInternationalization();
+    window.catecApp.setupPWA();
+    window.catecApp.setupAutomatedTests();
+    window.catecApp.setupPerformanceMonitoring();
+    window.catecApp.setupAutoBackup();
     
-    // Adiciona classe para indicar que JavaScript está ativo
-    document.body.classList.add('js-enabled');
-    
-    console.log('🚀 CatecSeguros App inicializada com sucesso!');
+    console.log('🚀 CatecSeguros App initialized successfully!');
 });
 
-// Exporta para uso global
-window.CatecSegurosApp = CatecSegurosApp;
+// Service Worker
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('📱 SW registered: ', registration);
+            })
+            .catch(registrationError => {
+                console.log('❌ SW registration failed: ', registrationError);
+            });
+    });
+}
