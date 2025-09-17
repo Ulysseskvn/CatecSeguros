@@ -8,6 +8,9 @@ class CatecSegurosApp {
         this.currentSection = 'home';
         this.isLoading = false;
         this.formSubmissions = new Map();
+        this.currentSlide = 0;
+        this.totalSlides = 4;
+        this.carouselInterval = null;
         this.init();
     }
 
@@ -23,6 +26,7 @@ class CatecSegurosApp {
         this.setupResponsiveMenu();
         this.setupSecurityFeatures();
         this.setupPerformanceOptimizations();
+        this.setupCarousel();
     }
 
     /**
@@ -213,6 +217,103 @@ class CatecSegurosApp {
 
         // Preload de recursos críticos
         this.preloadCriticalResources();
+    }
+
+    /**
+     * Configura carrossel
+     */
+    setupCarousel() {
+        const indicators = document.querySelectorAll('.indicator');
+        const slides = document.querySelectorAll('.carousel-slide');
+
+        // Configurar indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                this.goToSlide(index);
+            });
+        });
+
+        // Auto-play do carrossel
+        this.startCarousel();
+
+        // Pausar carrossel ao passar o mouse
+        const carousel = document.querySelector('.hero-carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', () => {
+                this.stopCarousel();
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                this.startCarousel();
+            });
+        }
+    }
+
+    /**
+     * Inicia o carrossel automático
+     */
+    startCarousel() {
+        this.stopCarousel(); // Limpar intervalo anterior
+        this.carouselInterval = setInterval(() => {
+            this.nextSlide();
+        }, 5000); // Trocar slide a cada 5 segundos
+    }
+
+    /**
+     * Para o carrossel automático
+     */
+    stopCarousel() {
+        if (this.carouselInterval) {
+            clearInterval(this.carouselInterval);
+            this.carouselInterval = null;
+        }
+    }
+
+    /**
+     * Vai para o próximo slide
+     */
+    nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+        this.updateCarousel();
+    }
+
+    /**
+     * Vai para o slide anterior
+     */
+    prevSlide() {
+        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+        this.updateCarousel();
+    }
+
+    /**
+     * Vai para um slide específico
+     */
+    goToSlide(slideIndex) {
+        this.currentSlide = slideIndex;
+        this.updateCarousel();
+    }
+
+    /**
+     * Atualiza o carrossel
+     */
+    updateCarousel() {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+
+        // Atualizar slides
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev');
+            if (index === this.currentSlide) {
+                slide.classList.add('active');
+            } else if (index === (this.currentSlide - 1 + this.totalSlides) % this.totalSlides) {
+                slide.classList.add('prev');
+            }
+        });
+
+        // Atualizar indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === this.currentSlide);
+        });
     }
 
     /**
@@ -686,7 +787,8 @@ class CatecSegurosApp {
             () => document.querySelector('#contactForm') !== null,
             () => document.querySelector('#secureModal') !== null,
             () => document.querySelectorAll('.security-card').length >= 6,
-            () => document.querySelectorAll('.service-card').length >= 3
+            () => document.querySelectorAll('.service-card').length >= 3,
+            () => document.querySelectorAll('.carousel-slide').length >= 4
         ];
 
         const results = tests.map(test => test());
@@ -775,6 +877,16 @@ function closeSecureModal() {
 function scrollToSection(sectionId) {
     if (window.catecApp) {
         window.catecApp.scrollToSection(sectionId);
+    }
+}
+
+function changeSlide(direction) {
+    if (window.catecApp) {
+        if (direction === 1) {
+            window.catecApp.nextSlide();
+        } else {
+            window.catecApp.prevSlide();
+        }
     }
 }
 

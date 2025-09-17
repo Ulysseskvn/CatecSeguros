@@ -80,18 +80,68 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section com Carrossel -->
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-container">
                     <div class="hero-content">
-                        <h1 class="hero-title">
-                            Seu <strong>seguro</strong> na maior <strong>seguradora</strong> do Brasil
-                        </h1>
-                        <p class="hero-subtitle">
-                            Conte com a ajuda da nossa equipe e receba uma <strong>proposta exclusiva</strong> direto na sua tela. 
-                            Você vai escolher entre as <strong>melhores seguradoras</strong> do mercado
-                        </p>
+                        <!-- Carrossel de Títulos -->
+                        <div class="hero-carousel">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide active">
+                                    <h1 class="hero-title">
+                                        Seu <strong>seguro</strong> na maior <strong>seguradora</strong> do Brasil
+                                    </h1>
+                                    <p class="hero-subtitle">
+                                        Conte com a ajuda da nossa equipe e receba uma <strong>proposta exclusiva</strong> direto na sua tela. 
+                                        Você vai escolher entre as <strong>melhores seguradoras</strong> do mercado
+                                    </p>
+                                </div>
+                                
+                                <div class="carousel-slide">
+                                    <h1 class="hero-title">
+                                        <strong>Seguro Auto</strong> com as <strong>melhores condições</strong>
+                                    </h1>
+                                    <p class="hero-subtitle">
+                                        Proteção completa para seu veículo com <strong>cobertura nacional</strong> e <strong>assistência 24h</strong>. 
+                                        Cotação rápida e <strong>preços competitivos</strong>
+                                    </p>
+                                </div>
+                                
+                                <div class="carousel-slide">
+                                    <h1 class="hero-title">
+                                        <strong>Seguro Residencial</strong> para sua <strong>proteção</strong>
+                                    </h1>
+                                    <p class="hero-subtitle">
+                                        Proteja sua casa contra <strong>incêndio, roubo, alagamento</strong> e outros riscos. 
+                                        <strong>Condições especiais</strong> e <strong>descontos por fidelidade</strong>
+                                    </p>
+                                </div>
+                                
+                                <div class="carousel-slide">
+                                    <h1 class="hero-title">
+                                        <strong>Seguro de Vida</strong> para sua <strong>família</strong>
+                                    </h1>
+                                    <p class="hero-subtitle">
+                                        Garanta o futuro da sua família com <strong>proteção financeira completa</strong>. 
+                                        <strong>Planos flexíveis</strong> e <strong>cobertura mundial</strong>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Indicadores do Carrossel -->
+                            <div class="carousel-indicators">
+                                <span class="indicator active" data-slide="0"></span>
+                                <span class="indicator" data-slide="1"></span>
+                                <span class="indicator" data-slide="2"></span>
+                                <span class="indicator" data-slide="3"></span>
+                            </div>
+                            
+                            <!-- Setas de Navegação -->
+                            <button class="carousel-prev" onclick="changeSlide(-1)">‹</button>
+                            <button class="carousel-next" onclick="changeSlide(1)">›</button>
+                        </div>
+                        
                         <div class="hero-cta">
                             <button class="btn-primary" onclick="openSecureModal()">
                                 Simular grátis
