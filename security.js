@@ -69,7 +69,7 @@ class SecurityManager {
      */
     setupSecurityHeaders() {
         // Headers já configurados no HTML meta tags
-        console.log('🔒 Security headers configured');
+        console.log('🛡️ CCS Security headers configured');
     }
 
     /**

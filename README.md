@@ -43,11 +43,16 @@ Referrer-Policy: strict-origin-when-cross-origin
 
 ```
 CatecSeguros/
-├── index.html          # Página principal
-├── styles.css          # Estilos e design responsivo
-├── app.js             # Lógica principal da aplicação
-├── security.js        # Módulo de segurança cibernética
-└── README.md          # Documentação do projeto
+├── index.html              # Página principal
+├── styles.css              # Estilos e design responsivo
+├── app.js                  # Lógica principal da aplicação
+├── security.js             # Módulo de segurança cibernética
+├── security-config.json    # Configurações de segurança
+├── production-config.json  # Configurações de produção
+├── catec..htaccess         # Configurações Apache
+├── robots.txt              # Diretrizes para crawlers
+├── sitemap.xml             # Mapa do site para SEO
+└── README.md               # Documentação do projeto
 ```
 
 ## 🚀 Como Executar
@@ -109,11 +114,11 @@ O sistema gera alertas para:
 ## 🌐 Recursos do Site
 
 ### **Seções Principais**
-1. **Hero Section** - Apresentação da empresa
+1. **Hero Section** - Apresentação da empresa com logo CCS
 2. **Segurança** - Recursos de proteção cibernética
 3. **Serviços** - Seguros e consultoria
 4. **Sobre** - Informações da empresa
-5. **Contato** - Formulários seguros
+5. **Contato** - Formulários seguros e informações de contato
 
 ### **Serviços Oferecidos**
 - **Seguro Cibernético Empresarial** (até R$ 10 milhões)
@@ -126,32 +131,29 @@ O sistema gera alertas para:
 - GDPR Compliance
 - LGPD Compliance
 
-## 📱 Design Responsivo
+### **Localização**
+- **Sede:** Londrina, Paraná
+- **Endereço:** Av. Ayrton Senna da Silva, 500 - Sala 901 - Palhano 2
+- **CEP:** 86050-460
 
-O site é totalmente responsivo e otimizado para:
-- Desktop (1200px+)
-- Tablet (768px - 1199px)
-- Mobile (até 767px)
+## 📍 Informações de Contato
 
-## 🔍 Testes de Segurança
+**Endereço:**
+- Av. Ayrton Senna da Silva, 500 - Sala 901 - Palhano 2
+- Londrina - PR, 86050-460
 
-### **Checklist de Segurança**
-- [x] HTTPS obrigatório
-- [x] Headers de segurança configurados
-- [x] Validação de entrada implementada
-- [x] Proteção XSS ativa
-- [x] CSRF protection
-- [x] Content Security Policy
-- [x] Sanitização de dados
-- [x] Monitoramento de atividades
-- [x] Logs de segurança
-- [x] Proteção contra phishing
+**Contato Principal:**
+- Telefone: (43) 9111-4220
+- E-mail: contato@catecseguros.com.br
 
-## 📞 Contato de Emergência
+**Horário de Funcionamento:**
+- Segunda a Sexta: 08:00 às 12:00 | 13:30 às 18:00
+- Sábado: 08:00 às 12:00
+- Domingo: Fechado
 
-**Emergência 24/7 para incidentes de segurança:**
-- Telefone: +55 (11) 9111-0000
-- E-mail: emergencia@catecseguros.com.br
+**Redes Sociais:**
+- Instagram: [@catecseguros](https://instagram.com/catecseguros)
+- Facebook: [CatecSeguros](https://www.facebook.com/catecseguros)
 
 ## 🔐 Políticas de Segurança
 

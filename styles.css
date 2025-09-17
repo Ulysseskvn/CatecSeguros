@@ -906,7 +906,13 @@ section {
 }
 
 .security-indicator::before {
-    content: '🔒';
+    content: 'CCS';
+    font-weight: bold;
+    font-size: 0.7rem;
+    background: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #1e40af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Loading States */

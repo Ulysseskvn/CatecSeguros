@@ -590,7 +590,7 @@ class CatecSegurosApp {
      * Registra evento de segurança
      */
     logSecurityEvent(event) {
-        console.log('🔒 Security Event:', event);
+        console.log('🛡️ CCS Security Event:', event);
         
         if (window.securityManager) {
             window.securityManager.logSuspiciousActivity(event);
