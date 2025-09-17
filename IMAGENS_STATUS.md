@@ -1,12 +1,12 @@
 # 📸 Status das Imagens - CatecSeguros
 
 ## ✅ **Imagens Já Adicionadas:**
-- `equipe-1.jpg` ✅ **ADICIONADA**
+- `cliente-1.jpg` ✅ **ADICIONADA** (renomeada de equipe-1.jpg)
 
 ## 📋 **Imagens que Ainda Precisam ser Adicionadas:**
 
 ### **🎠 Carrossel (Hero Section):**
-- `cliente-1.jpg` - Imagem da equipe ou cliente satisfeito
+- `cliente-1.jpg` ✅ **ADICIONADA** - Imagem da equipe ou cliente satisfeito
 - `produtos-1.jpg` - Imagem dos produtos/serviços
 
 ### **🖼️ Galeria (Seção Gallery):**
@@ -42,4 +42,4 @@
 
 ---
 
-**Status atual: 1/8 imagens adicionadas (12.5%)**
+**Status atual: 1/8 imagens adicionadas (12.5%) - cliente-1.jpg já aparece no carrossel!**
